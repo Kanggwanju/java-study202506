@@ -8,7 +8,7 @@ public class ArraySearch {
         // 배열의 인덱스 탐색과 요소 유무 확인
         String[] foods = {"족발", "파스타", "치킨", "삼겹살"};
         
-        String target = "양념치킨";
+        String target = "파스타";
         
         // 선형탐색: 0번부터 일일히 순차적으로 체크
         int index = -1;
