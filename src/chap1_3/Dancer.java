@@ -16,7 +16,6 @@ public class Dancer {
     
     // 기능(메서드): 객체를 동사적으로 표현하는 함수
     // 설계도에 있는 함수는 static을 붙이지 않음
-
     // 춤추는 기능
     void dance() {
         System.out.printf("%s 댄서가 %s춤을 춥니다.\n", dancerName, genres[0]);
@@ -40,4 +39,39 @@ public class Dancer {
         genres = new String[] {};
         danceLevel = 1;
     }
+
+    // 생성자 오버로딩: 생성자는 여러개 만들 수 있음
+    // 규칙: 파라미터가 달라야 함.
+    Dancer(String dName) {
+        System.out.println("2번 생성자 호출!");
+        dancerName = dName;
+        crewName = "똥크루";
+        genres = new String[] {"힙합"};
+        danceLevel = 0;
+    }
+
+    Dancer(String dName, String cName) {
+        System.out.println("3번 생성자 호출!");
+        dancerName = dName;
+        crewName = cName;
+        genres = null;
+        danceLevel = 2;
+    }
+
+    Dancer(String dName, String cName, String... settingGenres) {
+        System.out.println("4번 생성자 호출!");
+        dancerName = dName;
+        crewName = cName;
+        genres = settingGenres; // ...하면 알아서 배열로 처리됨
+        danceLevel = 0;
+    }
+
+    Dancer(String dName, String cName, int dLevel, String... settingGenres) {
+        System.out.println("4번 생성자 호출!");
+        dancerName = dName;
+        crewName = cName;
+        genres = settingGenres; // ...하면 알아서 배열로 처리됨
+        danceLevel = 0;
+    }
+
 }
