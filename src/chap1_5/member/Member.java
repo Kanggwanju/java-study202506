@@ -38,4 +38,23 @@ public class Member {
                 ", registerDate=" + registerDate +
                 '}';
     }
+
+    /**
+     * 회원의 상세정보를 출력하는 메서드입니다.
+     *
+     * 이 메서드는 회원의 이름, 이메일, 성별, 나이, 그리고 회원가입 날짜를
+     * 지정된 형식에 따라 콘솔에 출력합니다. 출력 형식은 다음과 같습니다:
+     * "이름: [이름], 이메일: [이메일], 성별: [성별], 나이: [나이]세, 가입일: [가입일]"
+     *
+     * 기능:
+     * 1. 가입일을 "yyyy-MM-dd HH:mm" 형식으로 변환합니다.
+     * 2. 회원의 정보를 지정된 출력 형식에 맞춰 출력합니다.
+     */
+    public void inform() {
+        String formattedDate = registerDate.format(
+                java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        );
+        System.out.printf("이름: %s, 이메일: %s, 성별: %s, 나이: %d세, 가입일: %s\n",
+                memberName, email, gender, age, formattedDate);
+    }
 }
