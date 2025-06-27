@@ -36,7 +36,7 @@ public class MemberController {
                 showAllMembers();
                 break;
             case "3":
-                System.out.println("\n# 회원 개별조회를 시작합니다.");
+                searchIndividualMember();
                 break;
             case "4":
                 System.out.println("\n# 회원 정보 중 패스워드를 수정합니다.");
@@ -59,6 +59,20 @@ public class MemberController {
         }// end switch
 
         prompt("======== 계속하시려면 Enter... =========");
+    }
+
+    void searchIndividualMember() {
+        System.out.println("\n# 회원 개별조회를 시작합니다.");
+        String email = prompt("# 조회할 회원의 이메일: ");
+
+        Member member = mr.findMemberByEmail(email);
+
+        if (member != null) {
+            System.out.println("\n# 조회 결과");
+            member.inform();
+        } else {
+            System.out.println("\n# 조회하신 회원이 없습니다.");
+        }
     }
 
     void signUp() {
