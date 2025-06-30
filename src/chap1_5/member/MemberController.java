@@ -39,16 +39,13 @@ public class MemberController {
                 searchIndividualMember();
                 break;
             case "4":
-                System.out.println("\n# 회원 정보 중 패스워드를 수정합니다.");
+                changePassword();
                 break;
             case "5":
-                // 이메일을 입력받고 있으면 패스워드도 입력받아서 삭제
-                System.out.println("\n# 회원 정보를 삭제합니다.");
+                deleteMember();
                 break;
             case "6":
-                // 1. hint: 배열을 2개 관리함.
-                // 2. 논리적 삭제를 구현 (실제로 배열에서 지우는게 아니라 지우는 척 함)
-                System.out.println("\n# 삭제된 회원 정보를 복구합니다.");
+                restoreMember();
                 break;
             case "7":
                 System.out.println("\n# 프로그램을 종료합니다.");
@@ -61,11 +58,50 @@ public class MemberController {
         prompt("======== 계속하시려면 Enter... =========");
     }
 
+    void deleteMember() {
+        // 이메일을 입력받고 있으면 패스워드도 입력받아서 삭제
+        System.out.println("\n# 회원 정보를 삭제합니다.");
+        Member foundMember = findMember("삭제");
+
+        if (foundMember != null) {
+            // 삭제 전에 패스워드를 확인
+            String inputPassword = prompt("# 비밀번호: ");
+            if (foundMember.isPasswordMatch(inputPassword)) {
+                // 실제 삭제 진행
+                mr.removeMember(foundMember.email);
+                System.out.println("\n# 회원 삭제가 완료되었습니다.");
+
+            } else {
+                System.out.println("\n# 비밀번호가 틀렸습니다. 삭제를 취소합니다.");
+            }
+        } else {
+            System.out.println("\n# 조회 결과가 없습니다!");
+        }
+    }
+
+    void changePassword() {
+        System.out.println("\n# 회원 정보 중 패스워드를 수정합니다.");
+        Member foundMember = findMember("수정");
+        if (foundMember != null) {
+            // 비밀번호 수정 진행
+            String newPassword = prompt("# 새 비밀번호 : ");
+
+            // 실질적인 데이터 수정 처리
+            foundMember.changeNewPassword(newPassword);
+            System.out.println("\n# 변경이 완료되었습니다.");
+        } else {
+            System.out.println("\n# 조회 결과가 없습니다!");
+        }
+    }
+
+    Member findMember(String message) {
+        String email = prompt("# %s 대상의 이메일: ".formatted(message));
+        return mr.findMemberByEmail(email);
+    }
+
     void searchIndividualMember() {
         System.out.println("\n# 회원 개별조회를 시작합니다.");
-        String email = prompt("# 조회할 회원의 이메일: ");
-
-        Member member = mr.findMemberByEmail(email);
+        Member member = findMember("조회");
 
         if (member != null) {
             System.out.println("\n# 조회 결과");
@@ -192,5 +228,17 @@ public class MemberController {
     String prompt(String message) {
         System.out.print(message);
         return sc.nextLine();
+    }
+
+    void restoreMember() {
+        String inputEmail = prompt("# 복구 대상의 이메일: ");
+        // 복구 대상 탐색 및 복구 처리
+        boolean flag = mr.restore(inputEmail);
+
+        if (flag) {
+            System.out.println("\n# 복구처리가 완료되었습니다.");
+        } else {
+            System.out.println("\n# 복구에 실패했습니다.");
+        }
     }
 }

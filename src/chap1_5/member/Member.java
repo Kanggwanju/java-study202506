@@ -57,4 +57,12 @@ public class Member {
         System.out.printf("이름: %s, 이메일: %s, 성별: %s, 나이: %d세, 가입일: %s\n",
                 memberName, email, gender, age, formattedDate);
     }
+
+    void changeNewPassword(String newPassword) {
+        this.password = newPassword;
+    }
+
+    boolean isPasswordMatch(String inputPassword) {
+        return this.password.equals(inputPassword);
+    }
 }
