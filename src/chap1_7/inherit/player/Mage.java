@@ -11,6 +11,12 @@ public class Mage extends Player {
         this.mana = 100;
     }
 
+    @Override
+    void showStatus() {
+        super.showStatus();
+        System.out.println("# 마력: " + this.mana);
+    }
+
     void fireBall() {
         System.out.printf("%s님이 파이어볼을 시전합니다.\n", this.nickName);
     }

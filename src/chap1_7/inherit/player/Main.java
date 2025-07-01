@@ -9,6 +9,8 @@ public class Main {
 
         warrior.showStatus();
         warrior.attack();
+
+//        warrior
         System.out.println("=============");
 
         mage.showStatus();

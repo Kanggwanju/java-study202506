@@ -1,7 +1,7 @@
 package chap1_7.inherit.player;
 
 // 상속을 위해 공통 속성과 공통 기능을 가진 부모 클래스 (super class)
-public class Player {
+public class Player extends Object {
 
     String nickName;
     int level;

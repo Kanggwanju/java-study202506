@@ -9,6 +9,12 @@ public class Hunter extends Player {
         this.concentrate = 100;
     }
 
+    @Override
+    void showStatus() {
+        super.showStatus();
+        System.out.println("# 집중: " + this.concentrate);
+    }
+
     void multiArrow() {
 
     }
