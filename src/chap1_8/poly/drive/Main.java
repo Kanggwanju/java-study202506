@@ -40,5 +40,14 @@ public class Main {
         System.out.println("car1 = " + car1);
         if (car1 != null)car1.accelerate();
 
+        System.out.println("================");
+
+        // Sonata인 것을 안다면 미리 Sonata로 다운캐스팅 실행
+        Sonata car2 = (Sonata) carShop.exportCar(3000);
+        car2.accelerate();
+        car2.joinHyundaiMembership();
+
+        // Car 타입이 아니여도 자동으로 cars 배열에 바뀌어서 들어감
+        cars[0] = car2;
     }
 }
