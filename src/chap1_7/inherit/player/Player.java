@@ -12,7 +12,7 @@ public class Player extends Object {
         this.nickName = nickName;
         this.level = 1;
         this.hp = hp;
-        System.out.println("플레이어의 생성자 호출!");
+//        System.out.println("플레이어의 생성자 호출!");
     }
     void attack() {
         System.out.printf("%s님이 공격합니다. \n", this.nickName);

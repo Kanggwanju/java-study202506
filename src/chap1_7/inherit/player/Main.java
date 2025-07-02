@@ -30,5 +30,14 @@ public class Main {
 
         hunter.showStatus();
         hunter.attack();
+
+        System.out.println("=============");
+        
+        mage.fireBall(warrior);
+        System.out.println("=============");
+        mage.fireBall(hunter);
+        System.out.println("=============");
+        mage.fireBall(new Mage("법사짱킹킹맨"));
+
     }
 }

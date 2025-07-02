@@ -27,7 +27,7 @@ public class Warrior extends Player {
     }
 
 
-    void dash() {
-        System.out.printf("%s님이 돌진합니다. \n", this.nickName);
+    void dash(Player player) {
+        System.out.printf("%s님이 %s님에게 돌진합니다. \n", this.nickName, player.nickName);
     }
 }
