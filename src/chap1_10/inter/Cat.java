@@ -15,4 +15,9 @@ public class Cat implements Pet, Huntable {
     public void hunt() {
 
     }
+
+    @Override
+    public void eat() {
+
+    }
 }

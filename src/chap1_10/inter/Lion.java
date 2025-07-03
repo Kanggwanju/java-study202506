@@ -1,6 +1,6 @@
 package chap1_10.inter;
 
-public class Lion implements Wild, Huntable {
+public class Lion extends Animal implements Aggressive {
     @Override
     public void violent() {
 
