@@ -117,18 +117,26 @@ public class MemberController {
         String password = prompt("# 패스워드: ");
         String memberName = prompt("# 이름: ");
         Gender genderStr = inputCorrectGender(); // MALE
-        String ageStr = prompt("# 나이: ");
+        while (true) {
+            try {
+                String ageStr = prompt("# 나이: ");
 
 
-
-        // 회원 배열에 추가
-        mr.addMember(new Member(
-                Integer.parseInt(ageStr),
-                email,
-                password,
-                memberName,
-                genderStr
-        ));
+                // 회원 배열에 추가
+                mr.addMember(new Member(
+                    Integer.parseInt(ageStr),
+                    email,
+                    password,
+                    memberName,
+                    genderStr
+                ));
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력해주세요.");
+            } catch (RuntimeException e) {
+                System.out.println("알 수 없는 오류");
+            }
+        }
 
         System.out.println("# 회원가입에 성공했습니다.");
 
