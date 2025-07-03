@@ -1,6 +1,7 @@
 package chap1_5.member;
 
-import java.util.Scanner;
+import static chap1_9.static_.util.InputUtils.prompt;
+import static chap1_9.static_.util.InputUtils.promptNumber;
 
 // 역할: 회원관리 앱의 입출력을 담당
 public class MemberController {
@@ -8,11 +9,11 @@ public class MemberController {
     // 객체의 협력과 위임
     // 필드: 클래스의 속성 - 부품 속성
     MemberRepository mr; // 의존관계
-    Scanner sc;
+//    Scanner sc;
 
     MemberController() {
         mr = new MemberRepository();
-        sc = new Scanner(System.in);
+//        sc = new Scanner(System.in);
     }
 
     // 프로그램 초기 화면 출력
@@ -42,6 +43,10 @@ public class MemberController {
                 changePassword();
                 break;
             case "5":
+                if (mr.size() == 0) {
+                    System.out.println("# 삭제할 회원이 없습니다.");
+                    return;
+                }
                 deleteMember();
                 break;
             case "6":
@@ -116,30 +121,19 @@ public class MemberController {
         String email = checkDuplicateEmail();
         String password = prompt("# 패스워드: ");
         String memberName = prompt("# 이름: ");
-        Gender genderStr = inputCorrectGender(); // MALE
-        while (true) {
-            try {
-                String ageStr = prompt("# 나이: ");
+        Gender gender = inputCorrectGender(); // MALE
+        int age = promptNumber("# 나이: ");
 
+        // 회원 배열에 추가
+        mr.addMember(new Member(
+            age,
+            email,
+            password,
+            memberName,
+            gender
+        ));
 
-                // 회원 배열에 추가
-                mr.addMember(new Member(
-                    Integer.parseInt(ageStr),
-                    email,
-                    password,
-                    memberName,
-                    genderStr
-                ));
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("숫자를 입력해주세요.");
-            } catch (RuntimeException e) {
-                System.out.println("알 수 없는 오류");
-            }
-        }
-
-        System.out.println("# 회원가입에 성공했습니다.");
-
+        System.out.println("\n# 회원가입에 성공했습니다.");
     }
 
     /**
@@ -233,10 +227,11 @@ public class MemberController {
      * @param message 입력을 요청하며 출력할 메시지
      * @return 사용자가 입력한 문자열
      */
-    String prompt(String message) {
-        System.out.print(message);
-        return sc.nextLine();
-    }
+//    String prompt(String message) {
+//        System.out.print(message);
+//        return sc.nextLine();
+//    }
+
 
     void restoreMember() {
         String inputEmail = prompt("# 복구 대상의 이메일: ");
