@@ -1,6 +1,6 @@
 package chap1_10.inter;
 
-public class Rabbit extends Wild implements Pet{
+public class Rabbit implements Pet, Wild {
 
 
     @Override

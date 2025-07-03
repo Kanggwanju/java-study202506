@@ -1,6 +1,6 @@
 package chap1_10.inter;
 
-public abstract class Wild {
+public interface Wild {
 
-    public abstract void violent();
+    void violent();
 }
