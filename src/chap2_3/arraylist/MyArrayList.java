@@ -47,7 +47,8 @@ public class MyArrayList<T> {
     }
 
     // 특정 인덱스의 요소 삭제하기
-    public void remove(int index) {
+    public T remove(int index)
+        throws ArrayIndexOutOfBoundsException {
         // 인덱스 범위를 확인
         if (index >= size || index < 0) {
             System.out.println("오류: " + index + "는 잘못된 인덱스입니다.");
@@ -55,21 +56,26 @@ public class MyArrayList<T> {
             throw new ArrayIndexOutOfBoundsException("오류: " + index + "는 잘못된 인덱스입니다.");
         }
 
-        for (int i = index; i < size; i++) {
+        // 지울 데이터를 백업
+        T removed = get(index);
+
+        for (int i = index; i < size - 1; i++) {
             values[i] = values[i + 1];
         }
-        values[size - 1] = null;
+
         size--;
+
+        // 메모리 관리 팁: 실제로 가려진 데이터를 지워줌
+        values[size] = null;
+
+
+        // 지운 데이터를 리턴
+        return removed;
     }
 
     // 리스트에 특정 요소가 포함되어 있는지 여부 반환
     public boolean contains(T element) {
-        for (int i = 0; i < size; i++) {
-            if (values[i].equals(element)) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf(element) != -1;
     }
 
     // 특정 요소가 처음으로 나타나는 인덱스를 반환, 없으면 -1
@@ -83,10 +89,40 @@ public class MyArrayList<T> {
     }
 
     public void clear() {
+        /*
+            논리적으로 전체삭제는 구현이 되었으나 실제 배열 내부에는
+            아직 데이터가 남아있는 상태
+         */
         for (int i = 0; i < size; i++) {
             values[i] = null;
         }
         size = 0;
+        /*
+            현재 실제 데이터가 10000개
+            10240개 -> 10개로 회귀?
+            실제 구현에서는 놔둡니다. 방크기를
+            이유: clear 이후에 다시 그만큼의 데이터를 채우는게 일반적
+         */
+//        this.values = new Object[DEFAULT_CAPACITY];
+
+    }
+
+    public void insert(T element, int index)
+        throws ArrayIndexOutOfBoundsException {
+        // 인덱스 범위를 확인
+        if (index >= (size + 1) || index < 0) {
+            System.out.println("오류: " + index + "는(은) 잘못된 인덱스입니다.");
+            throw new ArrayIndexOutOfBoundsException("오류: " + index + "는 잘못된 인덱스입니다.");
+        }
+
+        if (size == values.length) {
+            ensureCapacity();
+        }
+        for (int i = size; i >= index; i--) {
+            values[i + 1] = values[i];
+        }
+        values[index] = element;
+        size++;
     }
 
 

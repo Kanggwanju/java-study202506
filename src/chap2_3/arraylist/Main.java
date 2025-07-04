@@ -26,20 +26,36 @@ public class Main {
         System.out.println("firstFood = " + firstFood);
         
         // foods의 0번 인덱스를 삭제하고 싶어요
-        foods.remove(0);
+        String removedFood = foods.remove(0);
         System.out.println(foods);
+        System.out.println("삭제된 데이터: " + removedFood);
+        System.out.println("===================");
 
         // foods에 고래밥이 있나요
         boolean hasGorae = foods.contains("고래밥");
         System.out.println("고래밥이 있나요: " + hasGorae);
+        System.out.println("===================");
 
         // foods에 불고기가 어디에 있나요
         int indexOfBul = foods.indexOf("불고기");
         System.out.println("불고기 위치: " + indexOfBul);
+        System.out.println("===================");
+
+        try {
+            // 원하는 인덱스에 데이터 넣기
+            foods.insert("깐풍기", 1);
+            System.out.println("foods 리스트: " + foods);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.getMessage();
+        }
+        System.out.println("===================");
 
         // 리스트의 모든 요소 한번에 비우기
         foods.clear();
         System.out.println("foods 리스트: " + foods);
+        System.out.println("===================");
+
+
 
 
         // 정수 전용 배열
@@ -47,6 +63,15 @@ public class Main {
         numbers.push(100);
         numbers.push(200);
         numbers.push(300);
+
+        numbers.remove(0);
+        System.out.println("삭제 후 배열: " + numbers);
+        System.out.println("===================");
+        int index2 = numbers.indexOf(200);
+        System.out.println("index2 = " + index2);
+        System.out.println("===================");
+        numbers.clear();
+        System.out.println("numbers 배열: " + numbers);
 
         System.out.println(numbers);
 
