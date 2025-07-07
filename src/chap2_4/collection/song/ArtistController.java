@@ -35,7 +35,7 @@ public class ArtistController {
                     // 전체 등록되어있는 가수들의 이름과 노래의 개수를 출력
                     // ex) 동방신기 - 총 4곡
                     //     르세라핌 - 총 2곡
-//                    showAllArtist();
+                    showAllArtist();
                     break;
                 case "4":
                     System.out.println("# 프로그램을 종료합니까? [y/n]");
@@ -78,5 +78,10 @@ public class ArtistController {
         repository.searchSinger(singerName);
     }
 
+    private void showAllArtist() {
+        System.out.println("\n\n===== 전체 가수 정보 =====");
+
+        repository.showSingers();
+    }
 
 }

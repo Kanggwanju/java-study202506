@@ -60,6 +60,7 @@ public class ArtistRepository {
         // 저장소에 가수 이름이 없는 경우
         if (!this.artistMap.containsKey(singerName)) {
             System.out.println("\n# 해당 가수는 등록되지 않았습니다.");
+
         } else { // 가수 이름이 있는 경우
             Set<String> songList = this.artistMap.get(singerName).getSongList();
 
@@ -68,6 +69,25 @@ public class ArtistRepository {
             for (String song : songList) {
                 System.out.printf("# %s\n", song);
             }
+
+        }
+    }
+
+    public void showSingers() {
+        // map의 반복문 처리
+        Set<String> keys = this.artistMap.keySet();
+
+        // 등록된 가수의 수만큼 반복문 진행
+        for (String key : keys) {
+            // 해당 가수의 노래 리스트를 가져옴
+            Set<String> songList = this.artistMap.get(key).getSongList();
+            
+            // 노래의 개수만큼 반복문 진행
+            int n = 0;
+            for (String s : songList) {
+                n++;
+            }
+            System.out.printf("# %s - 총 %d곡\n", key, n);
         }
 
     }
