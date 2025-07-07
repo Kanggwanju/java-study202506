@@ -51,10 +51,22 @@ public class Main {
         System.out.println("===================");
 
         // 리스트의 모든 요소 한번에 비우기
-        foods.clear();
+//        foods.clear();
         System.out.println("foods 리스트: " + foods);
         System.out.println("===================");
 
+        for (int i = 0; i < foods.size(); i++) {
+            String s = foods.get(i);
+            System.out.println(s);
+        }
+
+        System.out.println("===================");
+
+        for (String s : foods) {
+            System.out.println(s);
+        }
+
+        System.out.println("===================");
 
 
 
