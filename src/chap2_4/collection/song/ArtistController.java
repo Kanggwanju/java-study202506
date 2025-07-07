@@ -29,7 +29,7 @@ public class ArtistController {
                     addArtistProcess();
                     break;
                 case "2":
-//                    searchProcess();
+                    searchProcess();
                     break;
                 case "3":
                     // 전체 등록되어있는 가수들의 이름과 노래의 개수를 출력
@@ -68,6 +68,14 @@ public class ArtistController {
         // 저장소에 곡을 추가하는 메서드
         repository.addSong(singerName, songName);
         
+    }
+
+    private void searchProcess() {
+        System.out.print("\n\n# 검색할 가수명을 입력하세요: ");
+        String singerName = InputUtils.prompt("");
+
+        // 저장소에서 가수를 검색하는 메서드
+        repository.searchSinger(singerName);
     }
 
 

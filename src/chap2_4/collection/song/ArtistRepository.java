@@ -56,7 +56,21 @@ public class ArtistRepository {
         }
     }
 
+    public void searchSinger(String singerName) {
+        // 저장소에 가수 이름이 없는 경우
+        if (!this.artistMap.containsKey(singerName)) {
+            System.out.println("\n# 해당 가수는 등록되지 않았습니다.");
+        } else { // 가수 이름이 있는 경우
+            Set<String> songList = this.artistMap.get(singerName).getSongList();
 
+            System.out.printf("\n# %s님의 노래목록\n", singerName);
+            System.out.println("========================");
+            for (String song : songList) {
+                System.out.printf("# %s\n", song);
+            }
+        }
+
+    }
 
 
     @Override
