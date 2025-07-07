@@ -42,6 +42,8 @@ public class ArtistController {
                     String exit = InputUtils.prompt(">> ");
                     if (exit.equalsIgnoreCase("y")) {
                         System.exit(0);
+                    } else if (exit.equalsIgnoreCase("ㅛ")) {
+                        System.exit(0);
                     } else {
                         System.out.println("# 종료를 취소합니다.");
                     }
