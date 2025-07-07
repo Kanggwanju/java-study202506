@@ -19,11 +19,13 @@ public class SetExample {
         boolean flag1 = set.add("김밥");
         set.add("단무지");
         boolean flag2 = set.add("김밥");
+        // 데이터 개수 확인
+        int size = set.size();
 
         System.out.println("set = " + set);
         System.out.println("flag1 = " + flag1);
         System.out.println("flag2 = " + flag2);
-        System.out.println(set.size());
+        System.out.println(size);
 
         // 요소 삭제 : set은 순서가 없기 때문에 인덱스도 없음
         // 단일 탐색이 어려움 (인덱스가 없어서 전체 for문 사용)
