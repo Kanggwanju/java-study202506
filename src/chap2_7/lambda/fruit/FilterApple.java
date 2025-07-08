@@ -88,8 +88,6 @@ public class FilterApple {
     }
 
     public static <T> boolean every(List<T> list, GenericEvery<T> every) {
-        List<T> everyList = new ArrayList<>();
-
         for (T t : list) {
             if (!every.test(t)) {
                 return false;
@@ -98,5 +96,17 @@ public class FilterApple {
         return true;
     }
 
+    public static <T> boolean some(List<T> list, GenericSome<T> some) {
+        for (T t : list) {
+            if (some.test(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static <T> boolean none(List<T> list, GenericSome<T> none) {
+        return !some(list, none);
+    }
 
 }

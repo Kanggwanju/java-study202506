@@ -96,10 +96,23 @@ public class Main {
         List<Apple> mappedWeights = map(appleBasket, apple -> apple.getWeight());
         System.out.println("mappedWeights = " + mappedWeights);
 
+        System.out.println("================");
+
         boolean flag1 = every(appleBasket, apple -> apple.getWeight() > 100);
         boolean flag2 = every(appleBasket, apple -> apple.getWeight() < 300);
         System.out.println("flag1 = " + flag1);
         System.out.println("flag2 = " + flag2);
 
+        boolean flag3 = some(appleBasket, apple -> apple.getColor() == RED);
+        boolean flag4 = some(appleBasket, apple -> apple.getWeight() >= 200);
+        boolean flag5 = some(appleBasket, apple -> apple.getWeight() < 50);
+        System.out.println("flag3 = " + flag3);
+        System.out.println("flag4 = " + flag4);
+        System.out.println("flag5 = " + flag5);
+
+        boolean flag6 = none(appleBasket, apple -> apple.getWeight() >= 200);
+        boolean flag7 = none(appleBasket, apple -> apple.getWeight() < 50);
+        System.out.println("flag3 = " + flag6);
+        System.out.println("flag4 = " + flag7);
     }
 }
