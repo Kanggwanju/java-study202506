@@ -50,6 +50,7 @@ public class FilterApple {
      *                     -> 안됨. 다만 객체안에 메서드를 바꿔서 사용하는 법
      *                          -> 오버라이딩
      *                              -> 동작(기능)을 추상화시켜 파라미터화 한다.
+     * @problem - 필터링 대상이 사과가 아니면? 만약 학생이면?
      */
     public static List<Apple> filterApples(List<Apple> basket, ApplePredicate predicate) {
         List<Apple> filteredBasket = new ArrayList<>();
@@ -60,5 +61,19 @@ public class FilterApple {
             }
         }
         return filteredBasket;
+    }
+
+    /**
+     * @solution - try 4 : 여러 객체들을 다양하게 필터링할 수 있도록 제네릭을 적용
+     */
+    public static <T> List<T> filter(List<T> list, GenericPredicate<T> predicate) {
+        List<T> filteredList = new ArrayList<>();
+
+        for (T t : list) {
+            if (predicate.test(t)) {
+                filteredList.add(t);
+            }
+        }
+        return filteredList;
     }
 }

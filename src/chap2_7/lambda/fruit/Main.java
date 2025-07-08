@@ -42,5 +42,49 @@ public class Main {
         List<Apple> weightGoe100 = filterApples(appleBasket, new AppleWeightPredicate());
         System.out.println("weightGoe100 = " + weightGoe100);
 
+        System.out.println("================");
+
+        // 무게가 홀수인 사과만 필터링
+        List<Apple> oddWeightApples = filterApples(appleBasket, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return apple.getWeight() % 2 == 1;
+            }
+        });
+        System.out.println("oddWeightApples = " + oddWeightApples);
+
+        System.out.println("================");
+
+        // 색상이 빨강 또는 초록 사과만 필터링
+        List<Apple> redOrGreenApples = filterApples(appleBasket,
+            apple -> apple.getColor() == RED || apple.getColor() == GREEN);
+        System.out.println("redOrGreenApples = " + redOrGreenApples);
+
+        System.out.println("================");
+
+        // 무게가 100이상이면서 빨강사과만 필터링
+        List<Apple> weightGoe100AndRedApples = filterApples(appleBasket,
+            apple -> apple.getWeight() >= 100 && apple.getColor() == RED);
+        System.out.println("weightGoe100AndRedApples = " + weightGoe100AndRedApples);
+
+        System.out.println("================");
+
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+
+        // 짝수만 필터링
+        List<Integer> evenNumbers = filter(numbers, n -> n % 2 == 0);
+        System.out.println("evenNumbers = " + evenNumbers);
+
+        List<Apple> yellowAppleList
+               = filter(appleBasket, a -> a.getColor() == YELLOW);
+        System.out.println("yellowAppleList = " + yellowAppleList);
+
+        List<String> filteredFoods = filter(
+            List.of("짜장면", "김", "탕수육"),
+            str -> str.length() == 3
+        );
+
+        System.out.println("filteredFoods = " + filteredFoods);
+
     }
 }
