@@ -17,6 +17,19 @@ public class Main {
         }
     }
 
+    private static class FrenchRestaurant implements Restaurant {
+
+        @Override
+        public void cook() {
+
+        }
+
+        @Override
+        public void reserve() {
+
+        }
+    }
+
 
     public static void main(String[] args) {
 
@@ -44,6 +57,27 @@ public class Main {
 
         int result3 = multiCalculator.operate(50, 30);
         System.out.println("result3 = " + result3);
+
+        System.out.println("====================");
+        
+        // 지금 급하게 레스토랑 예약을 해야됨, 요리도 빨리 해야됨
+        // 근데 실제로 레스토랑이 안지어져있음. 심지어 설계도도 없음
+        Restaurant restaurant = new Restaurant() {
+
+            @Override
+            public void cook() {
+                System.out.println("요리를 합니다.");
+            }
+
+            @Override
+            public void reserve() {
+                System.out.println("어서오세요.");
+            }
+        };
+
+        restaurant.cook();
+        restaurant.reserve();
+
 
     }
 }
