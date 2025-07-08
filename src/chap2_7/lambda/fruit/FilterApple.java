@@ -86,4 +86,17 @@ public class FilterApple {
         }
         return mappedList;
     }
+
+    public static <T> boolean every(List<T> list, GenericEvery<T> every) {
+        List<T> everyList = new ArrayList<>();
+
+        for (T t : list) {
+            if (!every.test(t)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
