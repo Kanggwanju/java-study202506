@@ -1,10 +1,11 @@
 package chap2_4.collection.song.ref;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 // 가수
-public class Artist {
+public class Artist implements Serializable {
 
     private final String artistName; // 가수명
     private final Set<String> songList; // 노래목록

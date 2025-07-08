@@ -16,6 +16,8 @@ public class ArtistController {
 
     public void start() {
 
+        repository.load();
+
         while (true) {
             System.out.println("\n\n****** 음악 관리 프로그램 ******");
             System.out.printf("# 현재 등록된 가수: %d명\n", repository.count());
@@ -123,6 +125,10 @@ public class ArtistController {
                 System.out.printf("\n# [%s]곡은 이미 등록된 노래입니다.\n", song);
             }
         }
+
+        // 세이브 파일 저장
+        repository.save();
+
     }
 
 } // end class

@@ -2,8 +2,7 @@ package chap2_4.collection.song.ref;
 
 import chap2_5.fileio.FileExample;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -18,33 +17,33 @@ public class ArtistRepository {
     public ArtistRepository() {
         artistMap = new HashMap<>();
 
-        try (FileReader fr = new FileReader(FileExample.ROOT_PATH + "/artist.txt")) {
-
-            // 텍스트를 줄 단위로 읽어내는 보조 스트림
-            BufferedReader br = new BufferedReader(fr);
-
-            while (true) {
-                String data = br.readLine();
-
-                if (data == null) break;
-
-                String[] split = data.split("-");
-//                System.out.println(split[1]);
-
-                Artist artist = new Artist(split[0]);
-
-                // 노래목록 문자열에서 노래들을 분리
-                String[] songList = split[1].split(",");
-                for (String song : songList) {
-                    artist.addSong(song);
-                }
-
-                artistMap.put(split[0], artist);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try (FileReader fr = new FileReader(FileExample.ROOT_PATH + "/artist.txt")) {
+//
+//            // 텍스트를 줄 단위로 읽어내는 보조 스트림
+//            BufferedReader br = new BufferedReader(fr);
+//
+//            while (true) {
+//                String data = br.readLine();
+//
+//                if (data == null) break;
+//
+//                String[] split = data.split("-");
+////                System.out.println(split[1]);
+//
+//                Artist artist = new Artist(split[0]);
+//
+//                // 노래목록 문자열에서 노래들을 분리
+//                String[] songList = split[1].split(",");
+//                for (String song : songList) {
+//                    artist.addSong(song);
+//                }
+//
+//                artistMap.put(split[0], artist);
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
@@ -136,5 +135,29 @@ public class ArtistRepository {
         }
 
         return artistData;
+    }
+
+    // 가수 정보를 세이브파일에 저장하는 메서드
+    public void save() {
+        try (FileOutputStream fos = new FileOutputStream(FileExample.ROOT_PATH + "/artist.sav")) {
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(artistMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 가수 정보를 세이브파일로부터 로드하는 메서드
+    public void load() {
+        String savePath = FileExample.ROOT_PATH + "/artist.sav";
+        File saveFile = new File(savePath);
+        if (saveFile.exists()) {
+            try (FileInputStream fis = new FileInputStream(FileExample.ROOT_PATH + "/artist.sav")) {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                artistMap = (Map<String, Artist>) ois.readObject();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
