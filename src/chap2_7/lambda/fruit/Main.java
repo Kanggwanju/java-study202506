@@ -86,5 +86,15 @@ public class Main {
 
         System.out.println("filteredFoods = " + filteredFoods);
 
+        System.out.println("================");
+
+        List<Apple> mappedColors = map(appleBasket, apple -> apple.getColor());
+        System.out.println("mappedColors = " + mappedColors);
+
+        System.out.println("================");
+
+        List<Apple> mappedWeights = map(appleBasket, apple -> apple.getWeight());
+        System.out.println("mappedWeights = " + mappedWeights);
+
     }
 }
