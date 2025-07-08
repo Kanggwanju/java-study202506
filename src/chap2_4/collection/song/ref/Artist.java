@@ -14,6 +14,14 @@ public class Artist {
         this.songList = new HashSet<>();
     }
 
+    @Override
+    public String toString() {
+        return "Artist{" +
+            "artistName='" + artistName + '\'' +
+            ", songList=" + songList +
+            '}';
+    }
+
     // 노래를 갖다주면 노래목록에 저장하는 메서드
     public boolean addSong(String songName) {
         return this.songList.add(songName);
