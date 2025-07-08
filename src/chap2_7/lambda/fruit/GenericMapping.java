@@ -1,7 +1,7 @@
 package chap2_7.lambda.fruit;
 
 @FunctionalInterface
-public interface GenericMapping<T> {
+public interface GenericMapping<T, R> {
 
-    Object test(T t);
+    R test(T t);
 }

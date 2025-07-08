@@ -77,12 +77,12 @@ public class FilterApple {
         return filteredList;
     }
 
-    public static <T> List<T> map(List<T> list, GenericMapping<T> mapping) {
-        List<T> mappedList = new ArrayList<>();
+    public static <T, R> List<R> map(List<T> list, GenericMapping<T, R> mapping) {
+        List<R> mappedList = new ArrayList<>();
 
         for (T t : list) {
-            Object item = mapping.test(t);
-            mappedList.add((T) item);
+            R item = mapping.test(t);
+            mappedList.add(item);
         }
         return mappedList;
     }
