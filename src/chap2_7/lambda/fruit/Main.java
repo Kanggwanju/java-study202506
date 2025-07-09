@@ -119,5 +119,10 @@ public class Main {
         boolean flag9 = every(mappedWeights, weight -> weight > 50);
         System.out.println("flag8 = " + flag8);
         System.out.println("flag9 = " + flag9);
+
+        System.out.println("=================");
+
+        List<Color> colorList = MappingApple.mappingApplesByColor(appleBasket);
+        System.out.println(colorList);
     }
 }
