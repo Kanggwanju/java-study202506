@@ -151,12 +151,7 @@ public class Main {
         System.out.println("=================");
         
         // 각 사과별로 "xx색 사과는 xxg입니다." 라는 문자열 목록을 리턴
-        List<String> stringList = MappingApple.mappingApples(appleBasket, new AppleFunction<String>() {
-            @Override
-            public String apply(Apple apple) {
-                return String.format("%s색 사과는 %dg입니다.", apple.getColor(), apple.getWeight());
-            }
-        });
+        List<String> stringList = MappingApple.mappingApples(appleBasket, Apple::getAppleDescription);
         System.out.println("stringList = " + stringList);
 
         System.out.println("===================");
@@ -206,6 +201,20 @@ public class Main {
             }
         });
         System.out.println("formatApples = " + formatApples);
+
+        System.out.println("======================");
+
+        List<Integer> integerList = MappingApple.map(numbers, n -> n + 100);
+        System.out.println("integerList = " + integerList);
+
+        System.out.println("======================");
+
+        List<String> foodMapList = MappingApple.map(
+            List.of("닭강정", "통닭", "닭백숙", "오리백숙", "김치찌개")
+            , str -> str + " 맛있어!"
+        );
+        System.out.println("foodMapList = " + foodMapList);
+
     }// end main
 
     private static class FormatApple {

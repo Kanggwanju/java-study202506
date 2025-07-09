@@ -46,4 +46,13 @@ public class Apple {
     public int hashCode() {
         return Objects.hash(weight, color);
     }
+
+    // 색상의 첫글자만 추출해서 반환하는 메서드
+    public char getColorFirstCharacter() {
+        return this.color.toString().charAt(0);
+    }
+
+    public String getAppleDescription() {
+        return String.format("%s색 사과는 %dg입니다.", this.getColor().toString(), this.getWeight());
+    }
 }
