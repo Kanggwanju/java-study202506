@@ -32,7 +32,15 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "{Trader: " + trader +
+        return "{Trader: " + trader.getName() + " in " + trader.getCity() +
+            ", year: " + year +
+            ", value: " + value +
+            '}';
+    }
+
+    public String toStringPrettier() {
+        return "{" +
+            "trader: " + trader.getName() + " in " + trader.getCity() +
             ", year: " + year +
             ", value: " + value +
             '}';

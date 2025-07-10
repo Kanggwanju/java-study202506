@@ -27,9 +27,9 @@ public class Trader {
 
     @Override
     public String toString() {
-        return
-            name + " in " +
-            city
-            ;
+        return "Trader{" +
+            "name='" + name + '\'' +
+            ", city='" + city + '\'' +
+            '}';
     }
 }
